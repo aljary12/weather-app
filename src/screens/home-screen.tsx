@@ -1,9 +1,9 @@
 import {
   FlatList,
+  Image,
   ListRenderItem,
   StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import React, {useState} from 'react';
 import Text from '../components/text';
@@ -16,6 +16,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootParamList} from '../navigator/root-navigator';
 import NavBar from '../components/nav-bar';
 import Box from '../components/box';
+import {format} from 'date-fns';
 
 type Navigation = NativeStackNavigationProp<RootParamList>;
 
@@ -27,10 +28,25 @@ function HomeScreen() {
   const [city, setCity] = useState('');
 
   const renderItem: ListRenderItem<Weather> = ({item}) => {
+    const date = new Date(item.dt * 1000);
     return (
       <TouchableOpacity
         onPress={() => navigation.navigate('weather', {city: item.name})}>
-        <Text>{item.name}</Text>
+        <Box row center-y style={{gap: 4}}>
+          <Box fill style={{gap: 4}}>
+            <Text>{item.name}</Text>
+            <Text size="x-small">
+              {format(date, 'EEE, dd MMM yyyy, hh:mm:ss a')}
+            </Text>
+          </Box>
+          <Image
+            source={{
+              uri: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+            }}
+            style={{width: 36, height: 36}}
+          />
+          <Text>{Math.floor(item.main.temp)}°</Text>
+        </Box>
       </TouchableOpacity>
     );
   };
