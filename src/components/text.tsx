@@ -35,14 +35,14 @@ const Text = React.forwardRef<RNText, TextProps>((props, ref) => {
 
 export default Text;
 
-const weights = StyleSheet.create({
+export const weights = StyleSheet.create({
   bold: {fontFamily: 'Mulish-Bold'},
   semiBold: {fontFamily: 'Mulish-SemiBold'},
   medium: {fontFamily: 'Mulish-Medium'},
   regular: {fontFamily: 'Mulish-Regular'},
 });
 
-const sizes = StyleSheet.create({
+export const sizes = StyleSheet.create({
   h1: {fontSize: 48},
   h2: {fontSize: 40},
   h3: {fontSize: 32},

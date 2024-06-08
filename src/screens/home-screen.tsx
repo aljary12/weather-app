@@ -3,6 +3,7 @@ import React from 'react';
 import Text from '../components/text';
 import {useHistoryState} from '../stores/history-store';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import InputForm from '../components/input-form';
 
 function HomeScreen() {
   const cities = useHistoryState(state => state.cities);
@@ -12,7 +13,14 @@ function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingHorizontal: 24,
+        gap: 20,
+        backgroundColor: '#FFFFFF',
+      }}>
+      <InputForm title="Search city" placeholder="City" />
       <FlatList
         data={cities}
         renderItem={renderItem}
