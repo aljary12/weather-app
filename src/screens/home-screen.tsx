@@ -1,4 +1,10 @@
-import {FlatList, ListRenderItem, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import Text from '../components/text';
 import {useHistoryState} from '../stores/history-store';
@@ -21,7 +27,12 @@ function HomeScreen() {
   const [city, setCity] = useState('');
 
   const renderItem: ListRenderItem<Weather> = ({item}) => {
-    return <Text>{item.name}</Text>;
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('weather', {city: item.name})}>
+        <Text>{item.name}</Text>
+      </TouchableOpacity>
+    );
   };
 
   return (
