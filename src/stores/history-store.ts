@@ -1,25 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
+import {Weather} from '../types/weather';
 
 interface HistoryState {
-  cities: string[];
-  addCity: (city: string) => void;
+  weathers: Weather[];
+  addWeather: (weather: Weather) => void;
 }
 
 export const useHistoryState = create<HistoryState>()(
   persist(
     set => ({
-      cities: [],
-      addCity: city =>
+      weathers: [],
+      addWeather: weather =>
         set(state => {
-          let cities = state.cities.concat(city);
+          let weathers = state.weathers.concat(weather);
 
-          if (cities.length > 5) {
-            cities = cities.slice(1);
+          if (weathers.length > 5) {
+            weathers = weathers.slice(1);
           }
 
-          return {cities: cities};
+          return {weathers};
         }),
     }),
     {

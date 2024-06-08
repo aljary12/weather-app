@@ -1,8 +1,14 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
+
 import * as config from './config';
 import Config from 'react-native-config';
+import {Weather} from '../types/weather';
 
-class Weather {
+class WeatherApi {
   private api: AxiosInstance;
 
   constructor() {
@@ -20,11 +26,11 @@ class Weather {
     return request;
   }
 
-  getCityWeather(params: {q: string}) {
+  getCityWeather(params: {q: string}): Promise<AxiosResponse<Weather>> {
     return this.api.get('weather', {
       params: {...params, units: 'metric'},
     });
   }
 }
 
-export default Weather;
+export default WeatherApi;

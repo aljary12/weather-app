@@ -1,10 +1,10 @@
-import Weather from './weather';
+import WeatherApi from './weather';
 
 class Api {
-  weather: Weather;
+  weather: WeatherApi;
 
   constructor() {
-    this.weather = new Weather();
+    this.weather = new WeatherApi();
   }
 }
 

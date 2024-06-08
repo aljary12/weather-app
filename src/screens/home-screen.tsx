@@ -4,12 +4,13 @@ import Text from '../components/text';
 import {useHistoryState} from '../stores/history-store';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import InputForm from '../components/input-form';
+import {Weather} from '../types/weather';
 
 function HomeScreen() {
-  const cities = useHistoryState(state => state.cities);
+  const weathers = useHistoryState(state => state.weathers);
 
-  const renderItem: ListRenderItem<string> = ({item}) => {
-    return <Text>{item}</Text>;
+  const renderItem: ListRenderItem<Weather> = ({item}) => {
+    return <Text>{item.name}</Text>;
   };
 
   return (
@@ -22,12 +23,12 @@ function HomeScreen() {
       }}>
       <InputForm title="Search city" placeholder="City" />
       <FlatList
-        data={cities}
+        data={weathers}
         renderItem={renderItem}
-        keyExtractor={item => item}
+        keyExtractor={item => item.id.toString()}
         contentContainerStyle={{
           flexGrow: 1,
-          justifyContent: (cities || []).length > 0 ? 'flex-start' : 'center',
+          justifyContent: (weathers || []).length > 0 ? 'flex-start' : 'center',
           gap: 20,
           paddingBottom: 24,
         }}
