@@ -17,6 +17,7 @@ import {RootParamList} from '../navigator/root-navigator';
 import NavBar from '../components/nav-bar';
 import Box from '../components/box';
 import {format} from 'date-fns';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type Navigation = NativeStackNavigationProp<RootParamList>;
 
@@ -31,10 +32,13 @@ function HomeScreen() {
     const date = new Date(item.dt * 1000);
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('weather', {city: item.name})}>
+        onPress={() => navigation.navigate('weather', {city: item.name})}
+        style={{backgroundColor: '#FFFFFF', padding: 16, borderRadius: 12}}>
         <Box row center-y style={{gap: 4}}>
           <Box fill style={{gap: 4}}>
-            <Text>{item.name}</Text>
+            <Text>
+              {item.name}, {item.sys.country}
+            </Text>
             <Text size="x-small">
               {format(date, 'EEE, dd MMM yyyy, hh:mm:ss a')}
             </Text>
@@ -46,6 +50,7 @@ function HomeScreen() {
             style={{width: 36, height: 36}}
           />
           <Text>{Math.floor(item.main.temp)}°</Text>
+          <Icon name="chevron-right" size={16} />
         </Box>
       </TouchableOpacity>
     );
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
     gap: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F9F9F9',
   },
 });
 

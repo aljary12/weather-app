@@ -46,9 +46,8 @@ export default function InputForm(props: Props) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    backgroundColor: '#FAFAFA',
+    padding: 16,
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     flexDirection: 'row',
     gap: 12,
