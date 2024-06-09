@@ -17,14 +17,14 @@ export const useHistoryState = create<HistoryState>()(
         set(state => {
           let weathers: Weather[] = [];
 
-          const index = _.findIndex(state.weathers, {id: weather.id});
+          const index = _.findIndex(state.weathers, {name: weather.name});
 
           if (index !== -1) {
-            // If the id exists, create a new array with the updated data
+            // If the name exists, create a new array with the updated data
             weathers = _.cloneDeep(state.weathers);
             weathers[index] = weather;
           } else {
-            // If the id does not exist, add data to the array
+            // If the name does not exist, add data to the array
             weathers = _.concat(state.weathers, weather);
           }
 

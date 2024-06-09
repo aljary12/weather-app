@@ -75,7 +75,7 @@ function HomeScreen() {
       <FlatList
         data={weathers}
         renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.name}
         contentContainerStyle={{
           flexGrow: 1,
           justifyContent: (weathers || []).length > 0 ? 'flex-start' : 'center',
